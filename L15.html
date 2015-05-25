@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>JDBC</title>
+
+	<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+	<meta name="author" content="Ilya Buziuk">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reveal.min.css">
+	<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- For syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+	<script>
+	if( window.location.search.match( /print-pdf/gi ) ) {
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = 'css/print/pdf.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	}
+	</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="css/custom.css">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<header>
+				<img width="200" height="100" src="images/bsu/exadel-logo.png" class="exadel_logo">
+			</header>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1><span class="red">Connection Pool</span></h1> 
+					<h1>&</h1>
+					<h1><span class="red">Security</span></h1>
+					<p>
+						<small>Created by <a href="https://github.com/ibuziuk" target="_blank">Ilya Buziuk</a> / <a href="https://twitter.com/ilyabuziuk"  target="_blank">@ilyabuziuk</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2><span class="red">Applications architecture</span></h2>
+					<img width="800" height="400" src="images/bsu/architecture.png" class="no-border">
+				</section>
+
+				<section>
+					<h1><span class="red">JDBC</span></h1>
+					<blockquote>abstraction layer between Java and DB</blockquote>
+				</section>
+
+				<section>
+					<h2><span class="red">Applications architecture</span></h2>
+					<img width="800" height="400" src="images/bsu/bottleneck.png" class="no-border">
+				</section>
+
+				<section>
+					<h1><span class="red">Solution</span></h1>
+					<h1>Connection Pool</h1>
+				</section>
+
+				<section>
+					<h2>The Gist</h2>
+					<img width="600" height="400" src="images/bsu/connection-pool.png" class="no-border">
+				</section>
+
+				<section>
+					<h1><span class="red">Implement</span></h1>
+					<h1>Custom Pool ?</h1>
+				</section>
+
+				<section>
+					<h1><span class="red">Apache DBCP 2</span></h1>
+				</section>
+
+				<section>
+					<h2>pom.xml</h2>
+					<pre><code>
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.commons&lt;/groupId&gt;
+	&lt;artifactId&gt;commons-dbcp2&lt;/artifactId&gt;
+	&lt;version&gt;2.1&lt;/version&gt;
+&lt;/dependency&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<h2><span class="red">Configuration</span></h2>
+					<ol>
+						<li>
+							<h4>maxTotal</h4>
+						</li>
+						<li>
+							<h4>maxIdle</h4>						
+						</li>
+						<li>
+							<h4>minIdle</h4>						
+						</li>
+					</ol>
+				</section>
+
+				<section>
+					<h2>Just Configurate</h2>
+					<h2><span class="red">The rest will be done by Pool</span></h2>
+				</section>
+
+				<section>
+					<h1><span class="red">Authentication</h1>
+				</section>
+
+				<section>
+					<h1><span class="red">Authentication</span></h1>
+					<h2>Filter + Session</h2>
+				</section>
+
+				<section>
+					 <h2><span class="red">HTTP session</span></h2>
+					<img width="800" height="500" src="images/bsu/httpsession.jpg" class="no-border">
+				</section>
+
+				<section>
+					<h2><span class="red">Custom Filter</span></h2>
+					<ol>
+						<li>
+							<h4>implement Filter</h4>
+						</li>
+						<li>
+							<h4>Add @WebServlet Annotation</h4>						
+						</li>
+						<li>
+							<h4>Override doFilter </h4>						
+						</li>
+					</ol>
+				</section>
+
+				<section>
+					<h1><span class="red">How it works?</span></h1>
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-1.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-2.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-3.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-4.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-6.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-6_1.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-7.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-8.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-9.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-10.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-11.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-12.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-13.png" class="no-border">
+				</section>
+
+				<section>
+					<img width="900" height="700" src="images/bsu/filter-14.png" class="no-border">
+				</section>
+
+				
+				<section>
+					<h2><span class="red">From theory to practise</span></h2>
+				</section>
+
+				<section>
+					<h2>TODOs<span class="red"> 7.0 </span></h2>
+				</section>
+
+				<section>
+					<h1><span class="red">Passwords</span></h1>
+				</section>
+
+				<section>
+					<h1>How to store</h1>
+					<h1><span class="red">Passwords ?</span></h1>
+				</section>
+
+				<section>
+					<h1><span class="red">The Ugly</span></h1>
+					<h1>open passwords</h1>
+				</section>
+
+				<section>
+					<h1><span class="red">The Bad</h1>
+					<h1>md5 / sha</h1>
+				</section>
+
+				<section>
+					<h1><span class="red">Rainbow tables</h1>
+				</section>
+
+				<section>
+					<h1><span class="red">Crypto Salt</h1>
+					<blockquote>Make a common password uncommon</blockquote>
+				</section>
+
+				<section>
+					<h1><span class="red">Purpose</h1>
+					<blockquote>hash-value will <span class="red">NOT</span> be found in any pre-calculated table</blockquote>
+				</section>
+
+				<section>
+					<h1><span class="red">Static Salt</h1>
+				</section>
+
+				<section>
+					<h1><span class="red">Dynamic Salt</h1>
+				</section>
+
+				<section>
+					<h1>If you need encryption, don't do it yourself. You'll get it <span class="red">wrong!</h1>
+				</section>
+
+				<section>
+					<h1><span class="red">The Good</h1>
+					<h1>Bcrypt</h1>
+				</section>
+
+				<section>
+					<h2>spring-security-crypto</h2>
+					<pre><code>
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.security&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-security-crypto&lt;/artifactId&gt;
+	&lt;version&gt;3.1.0.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+					</code></pre>
+				</section>
+
+				<section>
+					<h1><span class="red">What's Next</span></h1>
+				</section>
+
+				<section>
+					<h2><span class="red">Multilayered architecture</span></h2>
+					<img width="600" height="500" src="images/bsu/mvc.png" class="no-border">
+				</section>
+
+				<section>
+					<h1><span class="red">Library</h1>
+					<h2>vs</h2>
+					<h1><span class="red">Framework</h1>
+				</section>
+
+				<section>
+					<h2>Library <span class="red"> = </span> Tool</h2>
+					<h2>Library <span class="red"> = </span> Code reuse</h2>
+				</section>
+
+				<section>
+					<h2>Framework <span class="red"> = </span> Way of Life</h2>
+					<h2>Framework <span class="red"> = </span> Skeleton</h2>
+					<h2>Framework <span class="red"> = </span> Ecosystem</h2>
+				</section>
+
+				<section>
+					<h2>Framework <span class="red">vs</span> Library</h2>
+					<img width="600" height="400" src="images/bsu/framework.png" class="no-border">
+				</section>
+
+				<section>
+					<h1><span class="red">ORM</span></h1>
+					<blockquote>Object-relational mapping</blockquote>
+				</section>
+
+				<section>
+					<img width="300" height="300" src="images/bsu/hibernate.png" class="no-border">
+				</section>
+
+				<section>
+					<h2><span class="red">Example</span></h2>
+					<pre><code>
+@Entity
+@Table(name = "customer")
+public class Customer {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "customer_id")  
+	private Integer customerId;
+	
+	@NotEmpty
+	private String name;
+	
+	@OneToMany(mappedBy="customer", cascade=CascadeType.REMOVE)
+	private Set&lt;Project&gt; projects;
+
+	// getters, setters...
+					</code></pre>
+				</section>
+
+
+				<section>
+					<img width="600" height="400" src="images/bsu/spring.png" class="no-border">
+				</section>
+
+				<section>
+					<h2><span class="red">Spring</span></h2>
+					<img width="800" height="600" src="images/bsu/spring-framework.png" class="no-border">
+				</section>
+
+				<section>
+					<h1><span class="red">Why should you be carefull with</span> Frameworks ?</h1>
+				</section>
+
+				<section>
+					<h2><span class="red">Useful links</span></h2>
+					<ul>
+						<li>
+							<a href="http://tutorials.jenkov.com/java-servlets/servlet-filters.html" target="_blank">Filter</a>
+						</li>
+						<li>
+							<a href="http://www.journaldev.com/1933/java-servlet-filter-example-tutorial#servlet-filter-example" target="_blank">Session</a>
+						</li>
+						<li>
+							<a href="http://www.mkyong.com/spring-security/spring-security-password-hashing-example/" target="_blank">BCrypt</a>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Questions <span class="red">&</span> Proposals</h2>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				slideNumber: true,
+				center: true,
+				keyboard: true,
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'none', 
+
+				backgroundTransition: 'default',
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+				{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+</script>
+
+</body>
+</html>
+
